@@ -34,6 +34,7 @@ const App: React.FC = () => {
         <div className="hero__right">
           <div className="hero__top">
             <p>WEBSITE UNDER CONSTRIUCTION</p>
+            <p>(need to publish project links)</p>
           </div>
           <div className="hero__bottom">
             <p>github</p>
