@@ -1,5 +1,6 @@
 {
-  "name": "jafferr",
+  "homepage": "https://jafferr.ca",
+  "name": "jaffer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
