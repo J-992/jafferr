@@ -34,6 +34,7 @@ a {
 .hero__title {
   font-size: 50px;
   padding: 100px;
+  padding-bottom: 30px;
 }
 
 .hero__current,
@@ -41,6 +42,8 @@ a {
   font-size: 15px;
   padding: 10px;
   padding-left: 100px;
+  letter-spacing: 1px;
+  line-height: normal;
 }
 
 .hero__right {
@@ -66,7 +69,7 @@ a {
 .details__container {
   display: flex;
   align-items: flex-start;
-  background-color: #d8d8d8;
+  background-color: #efefef;
   color: #000000;
 }
 
