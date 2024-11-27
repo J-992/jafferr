@@ -14,7 +14,7 @@ const App: React.FC = () => {
           <div className="hero__current">
             <h4>I'm currently...</h4>
             <ul>
-              <li>studying mechanical engineering at the University of Waterloo</li>
+              <li>stuudying mechanical engineering at the University of Waterloo</li>
               <li>on our varsity rowing team as a novice mens heavyweight</li>
               <li>pushing myself mentally and physically to acheive peak genetic performance</li>
               <li>building a sick prosthetic arm that i dreamt up on a 4h flight to banff to create a solution that's as empowering as it is revolutionary</li>
