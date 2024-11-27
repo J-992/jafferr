@@ -33,7 +33,7 @@ const App: React.FC = () => {
         </div>
         <div className="hero__right">
           <div className="hero__top">
-            <p>text or whatever</p>
+            <p>WEBSITE UNDER CONSTRIUCTION</p>
           </div>
           <div className="hero__bottom">
             <p>github</p>
