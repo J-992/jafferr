@@ -26,7 +26,7 @@ export const projects: Project[] = [
     From mouse-less computer control to controlling a prosthetic arm, the sky's the limit!`,
     category: 'Hardware',
     href: 'https://www.google.com',
-    img: ''
+    img: '/imsges/emgvis_comprerrssed.gif'
   },
   { 
     name: 'Isotope Retrofit', 
