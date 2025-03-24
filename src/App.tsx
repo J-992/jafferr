@@ -6,6 +6,26 @@ const App: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [highlightedProjects, setHighlightedProjects] = useState<Project[]>([]);
   const [showDetails, setShowDetails] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Select featured projects for highlights section
   useEffect(() => {
@@ -23,6 +43,18 @@ const App: React.FC = () => {
 
   const toggleView = () => {
     setShowDetails(!showDetails);
+  };
+
+  const handleProjectClick = (project: Project) => {
+    if (isMobile) {
+      setSelectedProject(project);
+    } else {
+      window.open(project.href, '_blank');
+    }
+  };
+
+  const closeProjectDetails = () => {
+    setSelectedProject(null);
   };
 
   return (
@@ -56,7 +88,7 @@ const App: React.FC = () => {
         <div className="hero__right">
           <div className="hero__top">
             <p>WEBSITE UNDER CONSTRUCTION</p>
-            <p>(not mobile-friendly just yet)</p>
+            {!isMobile && <p>(not mobile-friendly just yet)</p>}
           </div>
           <div className="hero__bottom">
             <a href='https://github.com/J-992'>github</a>
@@ -67,6 +99,35 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Project Details Modal */}
+      {isMobile && selectedProject && (
+        <div className="mobile-project-modal">
+          <div className="mobile-project-modal-content">
+            <div className="mobile-modal-close" onClick={closeProjectDetails}>×</div>
+            <h2>{selectedProject.category}</h2>
+            <p className="project-name">{selectedProject.name}:</p>
+            <p className="project-description" style={{ whiteSpace: 'pre-line' }}>{selectedProject.description}</p>
+            
+            {selectedProject.img ? (
+              <img className="mobile-project-image" src={selectedProject.img} alt={selectedProject.name} />
+            ) : (
+              <p>no image found</p>
+            )}
+            
+            {selectedProject.href && (
+              <a 
+                href={selectedProject.href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mobile-project-link"
+              >
+                View Project
+              </a>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Details Section */}
       <div className="details__container">
@@ -99,8 +160,8 @@ const App: React.FC = () => {
                     <p
                       key={project.name}
                       className="list__item"
-                      onMouseEnter={() => setHoveredProject(project)}
-                      onClick={() => window.open(project.href, '_blank')}
+                      onMouseEnter={() => !isMobile && setHoveredProject(project)}
+                      onClick={() => handleProjectClick(project)}
                     >
                       {project.name}
                       <span className="project-date">{project.date}</span>
@@ -121,7 +182,7 @@ const App: React.FC = () => {
                   <div 
                     key={project.name} 
                     className="highlight-card"
-                    onClick={() => window.open(project.href, '_blank')}
+                    onClick={() => handleProjectClick(project)}
                   >
                     <div className="highlight-category">{project.category}</div>
                     <h3 className="highlight-name">{project.name}</h3>
@@ -136,7 +197,7 @@ const App: React.FC = () => {
               </div>
             </div>
           ) : (
-            hoveredProject ? (
+            hoveredProject && !isMobile ? (
               <div className="detail__box">
                 <h2>{hoveredProject.category}</h2>
                 <p className="project-name">{hoveredProject.name}:</p>
@@ -149,8 +210,8 @@ const App: React.FC = () => {
                 )}
               </div>
             ) : (
-              <div className="default__content">
-                <h2>hover over a project on the left to see its details!</h2>
+              <div className={`default__content ${isMobile ? 'mobile-default-content' : ''}`}>
+                <h2>{isMobile ? 'tap a project to view details' : 'hover over a project on the left to see its details!'}</h2>
               </div>
             )
           )}

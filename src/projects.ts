@@ -90,7 +90,7 @@ export const projects: Project[] = [
     description: "Just a cool lil online terminal I made about me. Not really going to update any further than what's on it", 
     category: 'Software', 
     href: 'https://j-992.github.io/terminal/' ,
-    img: ''
+    img: 'images/terminal.png'
   },
   { 
     name: 'Site++', 
