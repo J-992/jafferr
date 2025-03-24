@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { projects, Project } from './projects';
+import { experiences, Experience } from './experiences';
 
 const App: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [highlightedProjects, setHighlightedProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  
   const [showDetails, setShowDetails] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const [highlightedExperience, setHighlightedExperience] = useState<Experience[]>([]);
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
+  const [hoveredExperience, setHoveredExperience] = useState<Experience | null>(null);
 
   // Check if device is mobile
   useEffect(() => {
@@ -17,10 +23,10 @@ const App: React.FC = () => {
 
     // Initial check
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -38,7 +44,12 @@ const App: React.FC = () => {
       projects.find(p => p.name === 'Bruce Power Refurb')
     ].filter((p): p is Project => !!p);
 
+    const featuredExperience = [
+      experiences.find(p => p.name === 'NeuroFlex'),
+    ].filter((p): p is Experience => !!p);
+
     setHighlightedProjects(featured);
+    setHighlightedExperience(featuredExperience);
   }, []);
 
   const toggleView = () => {
@@ -53,8 +64,20 @@ const App: React.FC = () => {
     }
   };
 
+  const handleExperienceClick = (experience: Experience) => {
+    if (isMobile) {
+      setSelectedExperience(experience);
+    } else {
+      window.open(experience.href, '_blank');
+    }
+  };
+
   const closeProjectDetails = () => {
     setSelectedProject(null);
+  };
+
+  const closeExperienceDetails = () => {
+    setSelectedExperience(null);
   };
 
   return (
@@ -106,19 +129,23 @@ const App: React.FC = () => {
           <div className="mobile-project-modal-content">
             <div className="mobile-modal-close" onClick={closeProjectDetails}>×</div>
             <h2>{selectedProject.category}</h2>
-            <p className="project-name">{selectedProject.name}:</p>
+            <p className="project-name">
+              {selectedProject.name}
+              {selectedProject.icon && <img src={selectedProject.icon} className="project-icon-img" alt="" />}
+            </p>
             <p className="project-description" style={{ whiteSpace: 'pre-line' }}>{selectedProject.description}</p>
-            
+
+
             {selectedProject.img ? (
               <img className="mobile-project-image" src={selectedProject.img} alt={selectedProject.name} />
             ) : (
               <p>no image found</p>
             )}
-            
+
             {selectedProject.href && (
-              <a 
-                href={selectedProject.href} 
-                target="_blank" 
+              <a
+                href={selectedProject.href}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="mobile-project-link"
               >
@@ -131,18 +158,21 @@ const App: React.FC = () => {
 
       {/* Details Section */}
       <div className="details__container">
+
+        {/* Left Container */}
         <div className="left__content">
           <p className="number">00</p>
           <p className="number2">Engineering</p>
-          
+          <p className="number3">little things that make you go 'wow'! I love making the most random of ideas come to life (but unfotunately many remain incomplete)</p>
+
           <div className="view-toggle">
-            <button 
+            <button
               className={`view-btn ${showDetails ? 'active' : ''}`}
               onClick={() => setShowDetails(true)}
             >
               Project Details
             </button>
-            <button 
+            <button
               className={`view-btn ${!showDetails ? 'active' : ''}`}
               onClick={() => setShowDetails(false)}
             >
@@ -164,7 +194,10 @@ const App: React.FC = () => {
                       onClick={() => handleProjectClick(project)}
                     >
                       {project.name}
-                      <span className="project-date">{project.date}</span>
+                      <span className="project-date">
+                        {project.icon && <img src={project.icon} className="project-icon-img" alt="" />}
+                        {project.date}
+                      </span>
                     </p>
                   ))}
               </ul>
@@ -179,14 +212,19 @@ const App: React.FC = () => {
               <h2 className="highlights-title">Project Highlights</h2>
               <div className="highlights-grid">
                 {highlightedProjects.map((project) => (
-                  <div 
-                    key={project.name} 
+                  <div
+                    key={project.name}
                     className="highlight-card"
                     onClick={() => handleProjectClick(project)}
                   >
                     <div className="highlight-category">{project.category}</div>
-                    <h3 className="highlight-name">{project.name}</h3>
+                    <h3 className="highlight-name">
+                      {project.name}
+                      {project.icon && <img src={project.icon} className="highlight-icon-img" alt="" />}
+                    </h3>
                     <div className="highlight-date">{project.date}</div>
+
+
                     <p className="highlight-description">
                       {project.description.substring(0, 120)}
                       {project.description.length > 120 ? '...' : ''}
@@ -217,6 +255,99 @@ const App: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Hobbies Section */}
+      <div className="details__container">
+
+        {/* Left Container */}
+        <div className="left__content">
+          <p className="number">01</p>
+          <p className="number2">People</p>
+
+          <div className="view-toggle">
+            <button
+              className={`view-btn ${showDetails ? 'active' : ''}`}
+              onClick={() => setShowDetails(true)}
+            >
+              Experience Details
+            </button>
+            <button
+              className={`view-btn ${!showDetails ? 'active' : ''}`}
+              onClick={() => setShowDetails(false)}
+            >
+              Highlights
+            </button>
+          </div>
+
+            <div  className="list__container">
+              <ul>
+                    {experiences.map((experience) => (
+                        <p
+                          key={experience.name}
+                          className="list__item"
+                          onMouseEnter={() => !isMobile && setHoveredExperience(experience)}
+                          onClick={() => handleExperienceClick(experience)}
+                        >
+                          {experience.name}
+                          <span className="project-date">
+                            {experience.icon && <img src={experience.icon} className="project-icon-img" alt="" />}
+                            {experience.date}
+                          </span>
+                        </p>
+                    ))}
+              </ul>
+            </div>
+        </div>
+
+        {/* Right Container */}
+        <div className="right__content">
+          {!showDetails ? (
+            <div className="highlights-container">
+              <h2 className="highlights-title">Experience Highlights</h2>
+              <div className="highlights-grid">
+                {highlightedExperience.map((experience) => (
+                  <div
+                    key={experience.name}
+                    className="highlight-card"
+                    onClick={() => handleExperienceClick(experience)}
+                  >
+                    <h3 className="highlight-name">
+                      {experience.name}
+                      {experience.icon && <img src={experience.icon} className="highlight-icon-img" alt="" />}
+                    </h3>
+                    <div className="highlight-date">{experience.date}</div>
+
+
+                    <p className="highlight-description">
+                      {experience.description.substring(0, 120)}
+                      {experience.description.length > 120 ? '...' : ''}
+                    </p>
+                    <div className="highlight-cta">Learn more →</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            hoveredExperience && !isMobile ? (
+              <div className="detail__box">
+                <p className="project-name">{hoveredExperience.name}:</p>
+                <p className="project-description" style={{ whiteSpace: 'pre-line' }}>{hoveredExperience.description}</p>
+
+                {hoveredExperience.img ? (
+                  <img id="img__container" src={hoveredExperience.img} alt={hoveredExperience.name} />
+                ) : (
+                  <p>no image found</p>
+                )}
+              </div>
+            ) : (
+              <div className={`default__content ${isMobile ? 'mobile-default-content' : ''}`}>
+                <h2>{isMobile ? 'tap a project to view details' : 'hover over a project on the left to see its details!'}</h2>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+
 
       {/* Footer */}
       <div className="footer__container">

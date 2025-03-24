@@ -252,10 +252,22 @@ h4 {
 .number2 {
   font-size: 20px;
   color: #5a4180;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
-.number, .number2 {
+.number3 {
+  font-size: 15px;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  padding: 10px 15px;
+  background-color: #e3dfe8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.number, .number2, .number3 {
   padding-left: 20px;
 }
 
@@ -686,5 +698,36 @@ h4 {
   .mobile-modal-close {
     top: 10px;
     right: 15px;
+  }
+}
+
+/* Custom Project Icons */
+.project-icon-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  vertical-align: middle;
+  object-fit: contain;
+  border-radius: 20%;
+  align-items: end;
+}
+
+.highlight-icon-img {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-left: 10px;
+  vertical-align: middle;
+  object-fit: contain;
+  border-radius: 20%;
+}
+
+/* For mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .project-icon-img, .highlight-icon-img {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
   }
 }

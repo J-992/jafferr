@@ -4,13 +4,41 @@ export type Project = {
   description: string;
   category: 'Hardware' | 'Software';
   href: string;
-  img: string;
+  img?: string;
+  icon?: string; // Optional icon class name (for Font Awesome or similar)
 }
 
 export const projects: Project[] = [
+  {
+    name:'VDOT probe',
+    date: '2025',
+    description: '',
+    category: 'Hardware',
+    href: '',
+    img: '',
+    icon: ''
+  },
+  {
+    name:'HFSSTC',
+    date: '2025',
+    description: '',
+    category: 'Hardware',
+    href: '',
+    img: '',
+    icon: ''
+  },
+  {
+    name:'Mini Marx Generator',
+    date: '2025',
+    description: '',
+    category: 'Hardware',
+    href: '',
+    img: '',
+    icon: ''
+  },
   { 
     name: 'NeuroFlex', 
-    date: '2024', 
+    date: '2024 - 2025', 
     description: `The cost of prosthetics is kinda insane, could we possibly reduce it using a modular design?
 
 
@@ -26,7 +54,7 @@ export const projects: Project[] = [
     From mouse-less computer control to controlling a prosthetic arm, the sky's the limit!`,
     category: 'Hardware',
     href: 'https://www.google.com',
-    img: '/imsges/emgvis_comprerrssed.gif'
+    img: '/images/.gif'
   },
   { 
     name: 'Isotope Retrofit', 
@@ -34,7 +62,8 @@ export const projects: Project[] = [
     description: `Feasibility study to retrofit CANDU isotope production systems into PWRs. Market reach expansion. Pretty cool, but I can't really legally show many visuals`, 
     category: 'Hardware', 
     href: 'https://www.google.com' ,
-    img: ''
+    img: '',
+    icon: '/list-icons/framatome.png'
   },
   { 
     name: 'SketchMate', 
@@ -50,15 +79,16 @@ export const projects: Project[] = [
     description: 'The next few lines are a whole lotta nuclear jargon. Conducted two permits for Bruce A Unit 3 refurb. Completed an IEE and CIC.', 
     category: 'Hardware', 
     href: 'https://www.google.com' ,
-    img: ''
+    img: '',
+    icon: '/list-icons/brucepower.png'
   },
   { 
-    name: 'Inventory', 
+    name: 'Inventory Management System', 
     date: '2023', 
     description: 'An inventory software I made during my time at Framatome.', 
     category: 'Software', 
     href: 'https://www.google.com' ,
-    img: ''
+    icon: '/list-icons/framatome.png'
   },
   { 
     name: 'Target Counting', 
@@ -66,7 +96,7 @@ export const projects: Project[] = [
     description: "Yb-177 target counting python algorithms used within Bruce Power's Isotope Production System",
     category: 'Software', 
     href: 'https://www.google.com' ,
-    img: ''
+    icon: '/list-icons/framatome.png'
   },
   { 
     name: 'GlobalReach', 
