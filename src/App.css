@@ -31,7 +31,7 @@ a:hover {
   background-color: #392756;
   color: #fff;
   display: flex;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 40px 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -99,6 +99,8 @@ h4 {
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  align-self: flex-end;
 }
 
 .hero__bottom a {
@@ -578,6 +580,8 @@ h4 {
   .hero__top, .hero__bottom {
     padding: 20px;
     text-align: center;
+    width: 100%;
+    align-self: center;
   }
   
   .hero__bottom a {
