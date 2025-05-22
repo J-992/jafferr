@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description: `A custom myoelectric chip for NeuroFlex, endless uses. 
     From mouse-less computer control to controlling a prosthetic arm, the sky's the limit!`,
     category: 'Hardware',
-    href: 'https://www.google.com',
+    href: 'https://github.com/J-992/myosense',
     img: '/images/.gif'
   },
   { 
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     date: '2023', 
     description: `Feasibility study to retrofit CANDU isotope production systems into PWRs. Market reach expansion. Pretty cool, but I can't really legally show many visuals`, 
     category: 'Hardware', 
-    href: 'https://www.google.com' ,
+    href: '' ,
     img: '',
     icon: '/list-icons/framatome.png'
   },
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     date: '2024', 
     description: 'A failed startup', 
     category: 'Software', 
-    href: 'https://www.google.com' ,
+    href: '' ,
     img: ''
   },
   { 

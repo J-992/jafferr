@@ -133,9 +133,10 @@ h4 {
 .details__container {
   display: flex;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #333;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  
 }
 
 .left__content {
@@ -148,13 +149,14 @@ h4 {
   top: 0;
   background-color: #f7f7f7;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
+  min-height: 100px;
 }
 
 .right__content {
   font-size: 15px;
   width: 70%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: #552323;
 }
 
 .list__container {
